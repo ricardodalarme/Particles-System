@@ -37,7 +37,7 @@
             // darkLabel1
             // 
             this.darkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel1.Location = new System.Drawing.Point(12, 11);
+            this.darkLabel1.Location = new System.Drawing.Point(9, 10);
             this.darkLabel1.Name = "darkLabel1";
             this.darkLabel1.Size = new System.Drawing.Size(60, 13);
             this.darkLabel1.TabIndex = 0;
@@ -48,14 +48,14 @@
             this.darkTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.darkTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.darkTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkTextBox1.Location = new System.Drawing.Point(15, 27);
+            this.darkTextBox1.Location = new System.Drawing.Point(12, 26);
             this.darkTextBox1.Name = "darkTextBox1";
             this.darkTextBox1.Size = new System.Drawing.Size(193, 20);
             this.darkTextBox1.TabIndex = 1;
             // 
             // picParticle
             // 
-            this.picParticle.Location = new System.Drawing.Point(224, 12);
+            this.picParticle.Location = new System.Drawing.Point(215, 10);
             this.picParticle.Name = "picParticle";
             this.picParticle.Size = new System.Drawing.Size(400, 400);
             this.picParticle.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 422);
+            this.ClientSize = new System.Drawing.Size(626, 419);
             this.Controls.Add(this.picParticle);
             this.Controls.Add(this.darkTextBox1);
             this.Controls.Add(this.darkLabel1);

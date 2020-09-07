@@ -2,75 +2,63 @@
 using SFML.System;
 using System;
 using System.Collections.Generic;
+using static Particles.Program;
 
 namespace Particles
 {
-    class ParticleSystem : Drawable
+    class ParticlePool : Drawable
     {
-        public ParticleSystem(int count)
+        public ParticlePool(int count, int lifeTime)
         {
-            m_lifetime = Time.FromMilliseconds(500);
-            m_emitter = new Vector2f(0f, 0f);
-            m_vertices = new VertexArray(PrimitiveType.Points, (uint)count);
-            for (var i = 0; i < count; i++)
-            {
-                m_particles.Add(new Particle
-                {
-                    LifeTime = Time.Zero
-                });
-                
-            }
+            LifeTime = Time.FromMilliseconds(lifeTime);
+            Vertices = new VertexArray(PrimitiveType.Points, (uint)count);
+            for (var i = 0; i < count; i++) Particles.Add(new Particle());
         }
 
-        public List<Particle> m_particles = new List<Particle>();
-        public VertexArray m_vertices;
-        public Time m_lifetime;
-        public Vector2f m_emitter;
-        public Random random = new Random();
+        // Pool informations
+        public Vector2f Emitter { get; set; } = new Vector2f(0f, 0f);
+        public List<Particle> Particles = new List<Particle>();
+        public Time LifeTime;
+        public VertexArray Vertices;
 
-        public void setEmitter(Vector2f position)
+        public void Update(Time elapsed)
         {
-            m_emitter = position;
-        }
-
-        public void update(Time elapsed)
-        {
-            for (int i = 0; i < m_particles.Count; ++i)
+            for (int i = 0; i < Particles.Count; ++i)
             {
                 // update the particle lifetime
-                Particle p = m_particles[i];
+                Particle p = Particles[i];
                 p.LifeTime -= elapsed;
 
                 // if the particle is dead, respawn it
                 if (p.LifeTime <= Time.Zero)
-                    resetParticle(i);
+                    ResetParticle(i);
 
                 // update the alpha (transparency) of the particle according to its lifetime
-                float ratio = p.LifeTime.AsSeconds() / m_lifetime.AsSeconds();
-                m_vertices[(uint)i] = new Vertex(
-                    m_vertices[(uint)i].Position + p.Velocity * elapsed.AsSeconds(),
-                    new Color(220, 255, 255, (byte)(ratio * 255))
+                float ratio = p.LifeTime.AsSeconds() / LifeTime.AsSeconds();
+                Vertices[(uint)i] = new Vertex(
+                    Vertices[
+                        (uint)i].Position + p.Velocity * elapsed.AsSeconds(),
+                        new Color(220, 255, 255, (byte)(ratio * 255))
                     );
             }
         }
 
-        public void resetParticle(int index)
+        public void ResetParticle(int index)
         {
             // give a random velocity and lifetime to the particle
-            double angle = (random.Next(0, 360)) * 3.14f / 180.0;
-            double speed = random.Next(0, 50) + 50.0;
-            m_particles[index].Velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
-            m_particles[index].LifeTime = Time.FromMilliseconds((random.Next(0, m_lifetime.AsMilliseconds())) + 1000);
+            double angle = (Randomizer.Next(0, 360)) * 3.14f / 180.0;
+            double speed = Randomizer.Next(0, 50) + 50.0;
+            Particles[index].Velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
+            Particles[index].LifeTime = Time.FromMilliseconds((Randomizer.Next(0, LifeTime.AsMilliseconds())) + 1000);
 
             // reset the position of the corresponding vertex
-            m_vertices[(uint)index] = new Vertex(m_emitter);
+            Vertices[(uint)index] = new Vertex(Emitter);
         }
 
         public void Draw(RenderTarget target, RenderStates states)
         {
-
             // draw the vertex array
-            target.Draw(m_vertices, states);
+            target.Draw(Vertices, states);
         }
     }
 }

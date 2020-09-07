@@ -1,36 +1,27 @@
 ﻿using SFML.Graphics;
 using SFML.System;
-using SFML.Window;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Particles
 {
-    
-
     static class Program
     {
+        // To generate random numbers
+        public static Random Randomizer = new Random();
 
-
-
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            // Open the main form
             var form = new Editor();
             form.Show();
-            //  new Editor();
 
             // create the window
             RenderWindow window = new RenderWindow(form.picParticle.Handle);
 
-            // create the particle system
-            ParticleSystem particles = new ParticleSystem(10000);
+            // Create the particle pool
+            ParticlePool particles = new ParticlePool(100, 5000);
 
             // create a clock to track the elapsed time
             Clock clock = new Clock();
@@ -39,11 +30,11 @@ namespace Particles
             while (window.IsOpen)
             {
                 // make the particle system emitter follow the mouse
-                particles.setEmitter(new Vector2f(150, 150));
+                particles.Emitter = new Vector2f(150, 150);
 
                 // update it
                 Time elapsed = clock.Restart();
-                particles.update(elapsed);
+                particles.Update(elapsed);
 
                 // draw it
                 window.Clear();
@@ -51,7 +42,6 @@ namespace Particles
                 window.Display();
                 Application.DoEvents();
             }
-
         }
     }
 }
