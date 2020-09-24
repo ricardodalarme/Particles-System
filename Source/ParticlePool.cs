@@ -8,18 +8,22 @@ namespace Particles
 {
     class ParticlePool : Drawable
     {
-        public ParticlePool(int count, int lifeTime)
+        public ParticlePool()
         {
-            LifeTime = Time.FromMilliseconds(lifeTime);
-            Vertices = new VertexArray(PrimitiveType.Points, (uint)count);
-            for (var i = 0; i < count; i++) Particles.Add(new Particle());
+            LifeTime = Time.FromMilliseconds((int)Form.numLifeTime.Value);
+            Speed = (int)Form.numSpeed.Value;
+            Vertices = new VertexArray(PrimitiveType.Points, (uint)Form.numCount.Value);
+            for (var i = 0; i < Vertices.VertexCount; i++) Particles.Add(new Particle());
         }
 
         // Pool informations
         public Vector2f Emitter { get; set; } = new Vector2f(0f, 0f);
         public List<Particle> Particles = new List<Particle>();
-        public Time LifeTime;
         public VertexArray Vertices;
+
+        // Pool properties
+        public Time LifeTime { get; set; }
+        public int Speed { get; set; }
 
         public void Update(Time elapsed)
         {
@@ -47,7 +51,7 @@ namespace Particles
         {
             // give a random velocity and lifetime to the particle
             double angle = (Randomizer.Next(0, 360)) * 3.14f / 180.0;
-            double speed = Randomizer.Next(0, 50) + 50.0;
+            double speed = Randomizer.Next(0, 50) + Speed;
             Particles[index].Velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
             Particles[index].LifeTime = Time.FromMilliseconds((Randomizer.Next(0, LifeTime.AsMilliseconds())) + 1000);
 

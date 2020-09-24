@@ -10,35 +10,43 @@ namespace Particles
         // To generate random numbers
         public static Random Randomizer = new Random();
 
+        // Create the particle pool
+        public static ParticlePool Particles;
+
+        // Application main form
+        public static Editor Form;
+        public static bool Working = true;
+
         [STAThread]
         static void Main()
         {
             // Open the main form
-            var form = new Editor();
-            form.Show();
+            Application.EnableVisualStyles();
+            Form = new Editor();
+            Form.Show();
 
-            // create the window
-            RenderWindow window = new RenderWindow(form.picParticle.Handle);
+            // Create the windows
+            RenderWindow window = new RenderWindow(Form.picParticle.Handle);
 
-            // Create the particle pool
-            ParticlePool particles = new ParticlePool(100, 5000);
-
-            // create a clock to track the elapsed time
+            // Create a clock to track the elapsed time
             Clock clock = new Clock();
 
-            // run the main loop
-            while (window.IsOpen)
+            // Initialize the particle pool with default values
+            Particles = new ParticlePool();
+
+            // Run the main loop
+            while (Working)
             {
-                // make the particle system emitter follow the mouse
-                particles.Emitter = new Vector2f(150, 150);
+                // Make the particle system emitter follow the mouse
+                Particles.Emitter = new Vector2f(window.Size.X / 2, window.Size.Y / 2);
 
-                // update it
+                // Update it
                 Time elapsed = clock.Restart();
-                particles.Update(elapsed);
+                Particles.Update(elapsed);
 
-                // draw it
+                // Draw it
                 window.Clear();
-                window.Draw(particles);
+                window.Draw(Particles);
                 window.Display();
                 Application.DoEvents();
             }
