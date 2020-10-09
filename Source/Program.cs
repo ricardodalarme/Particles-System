@@ -11,7 +11,7 @@ namespace Particles
         public static Random Randomizer = new Random();
 
         // Create the particle pool
-        public static ParticlePool Particles;
+        public static ParticlePool Particles = new ParticlePool();
 
         // Application main form
         public static Editor Form;
@@ -20,6 +20,8 @@ namespace Particles
         [STAThread]
         static void Main()
         {
+            Clock clock = new Clock();
+
             // Open the main form
             Application.EnableVisualStyles();
             Form = new Editor();
@@ -27,12 +29,6 @@ namespace Particles
 
             // Create the windows
             RenderWindow window = new RenderWindow(Form.picParticle.Handle);
-
-            // Create a clock to track the elapsed time
-            Clock clock = new Clock();
-
-            // Initialize the particle pool with default values
-            Particles = new ParticlePool();
 
             // Run the main loop
             while (Working)

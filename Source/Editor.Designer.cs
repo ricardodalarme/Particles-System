@@ -28,29 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.darkLabel1 = new DarkUI.Controls.DarkLabel();
             this.picParticle = new System.Windows.Forms.PictureBox();
-            this.butReset = new DarkUI.Controls.DarkButton();
-            this.darkLabel2 = new DarkUI.Controls.DarkLabel();
-            this.numLifeTime = new DarkUI.Controls.DarkNumericUpDown();
-            this.numCount = new DarkUI.Controls.DarkNumericUpDown();
-            this.numSpeed = new DarkUI.Controls.DarkNumericUpDown();
-            this.darkLabel3 = new DarkUI.Controls.DarkLabel();
+            this.prgProperties = new System.Windows.Forms.PropertyGrid();
             ((System.ComponentModel.ISupportInitialize)(this.picParticle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numLifeTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).BeginInit();
             this.SuspendLayout();
-            // 
-            // darkLabel1
-            // 
-            this.darkLabel1.AutoSize = true;
-            this.darkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel1.Location = new System.Drawing.Point(9, 10);
-            this.darkLabel1.Name = "darkLabel1";
-            this.darkLabel1.Size = new System.Drawing.Size(71, 13);
-            this.darkLabel1.TabIndex = 0;
-            this.darkLabel1.Text = "Life time (ms):";
             // 
             // picParticle
             // 
@@ -60,122 +41,51 @@
             this.picParticle.TabIndex = 2;
             this.picParticle.TabStop = false;
             // 
-            // butReset
+            // prgProperties
             // 
-            this.butReset.Location = new System.Drawing.Point(12, 384);
-            this.butReset.Name = "butReset";
-            this.butReset.Padding = new System.Windows.Forms.Padding(5);
-            this.butReset.Size = new System.Drawing.Size(193, 23);
-            this.butReset.TabIndex = 3;
-            this.butReset.Text = "Reset";
-            this.butReset.Click += new System.EventHandler(this.butReset_Click);
-            // 
-            // darkLabel2
-            // 
-            this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel2.Location = new System.Drawing.Point(9, 53);
-            this.darkLabel2.Name = "darkLabel2";
-            this.darkLabel2.Size = new System.Drawing.Size(60, 13);
-            this.darkLabel2.TabIndex = 4;
-            this.darkLabel2.Text = "Count:";
-            // 
-            // numLifeTime
-            // 
-            this.numLifeTime.Location = new System.Drawing.Point(12, 26);
-            this.numLifeTime.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numLifeTime.Name = "numLifeTime";
-            this.numLifeTime.Size = new System.Drawing.Size(193, 20);
-            this.numLifeTime.TabIndex = 5;
-            this.numLifeTime.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // numCount
-            // 
-            this.numCount.Location = new System.Drawing.Point(12, 69);
-            this.numCount.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numCount.Name = "numCount";
-            this.numCount.Size = new System.Drawing.Size(193, 20);
-            this.numCount.TabIndex = 6;
-            this.numCount.Value = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            // 
-            // numSpeed
-            // 
-            this.numSpeed.Location = new System.Drawing.Point(12, 111);
-            this.numSpeed.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numSpeed.Name = "numSpeed";
-            this.numSpeed.Size = new System.Drawing.Size(193, 20);
-            this.numSpeed.TabIndex = 8;
-            this.numSpeed.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            // 
-            // darkLabel3
-            // 
-            this.darkLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel3.Location = new System.Drawing.Point(9, 95);
-            this.darkLabel3.Name = "darkLabel3";
-            this.darkLabel3.Size = new System.Drawing.Size(60, 13);
-            this.darkLabel3.TabIndex = 7;
-            this.darkLabel3.Text = "Speed:";
+            this.prgProperties.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.prgProperties.CategoryForeColor = System.Drawing.Color.Gainsboro;
+            this.prgProperties.CategorySplitterColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.prgProperties.CommandsBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.prgProperties.CommandsForeColor = System.Drawing.Color.Gainsboro;
+            this.prgProperties.CommandsVisibleIfAvailable = false;
+            this.prgProperties.DisabledItemForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(133)))), ((int)(((byte)(133)))));
+            this.prgProperties.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prgProperties.HelpBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.prgProperties.HelpBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.prgProperties.HelpForeColor = System.Drawing.Color.Gainsboro;
+            this.prgProperties.HelpVisible = false;
+            this.prgProperties.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(51)))), ((int)(((byte)(53)))));
+            this.prgProperties.Location = new System.Drawing.Point(12, 10);
+            this.prgProperties.Name = "prgProperties";
+            this.prgProperties.Size = new System.Drawing.Size(193, 400);
+            this.prgProperties.TabIndex = 115;
+            this.prgProperties.ToolbarVisible = false;
+            this.prgProperties.ViewBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.prgProperties.ViewBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.prgProperties.ViewForeColor = System.Drawing.Color.Gainsboro;
             // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 419);
-            this.Controls.Add(this.numSpeed);
-            this.Controls.Add(this.darkLabel3);
-            this.Controls.Add(this.numCount);
-            this.Controls.Add(this.numLifeTime);
-            this.Controls.Add(this.darkLabel2);
-            this.Controls.Add(this.butReset);
+            this.Controls.Add(this.prgProperties);
             this.Controls.Add(this.picParticle);
-            this.Controls.Add(this.darkLabel1);
             this.MaximizeBox = false;
             this.Name = "Editor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Particles Editor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Editor_FormClosed);
+            this.Load += new System.EventHandler(this.Editor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picParticle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numLifeTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private DarkUI.Controls.DarkLabel darkLabel1;
         public System.Windows.Forms.PictureBox picParticle;
-        private DarkUI.Controls.DarkButton butReset;
-        private DarkUI.Controls.DarkLabel darkLabel2;
-        private DarkUI.Controls.DarkLabel darkLabel3;
-        public DarkUI.Controls.DarkNumericUpDown numLifeTime;
-        public DarkUI.Controls.DarkNumericUpDown numCount;
-        public DarkUI.Controls.DarkNumericUpDown numSpeed;
+        private System.Windows.Forms.PropertyGrid prgProperties;
     }
 }
 

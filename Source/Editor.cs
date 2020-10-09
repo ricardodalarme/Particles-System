@@ -9,9 +9,9 @@ namespace Particles
             InitializeComponent();
         }
 
-        private void butReset_Click(object sender, System.EventArgs e)
+        private void Editor_Load(object sender, System.EventArgs e)
         {
-           Program.Particles = new ParticlePool();
+            prgProperties.SelectedObject = Program.Particles;
         }
 
         private void Editor_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)

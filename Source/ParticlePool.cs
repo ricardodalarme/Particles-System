@@ -8,22 +8,32 @@ namespace Particles
 {
     class ParticlePool : Drawable
     {
+        // Pool properties
+        public int Speed { get; set; }
+        public int Count { get; set; }
+        public int LifeTime
+        {
+            get => lifeTime.AsMilliseconds();
+            set => lifeTime = Time.FromMilliseconds(value);
+        }
+
         public ParticlePool()
         {
-            LifeTime = Time.FromMilliseconds((int)Form.numLifeTime.Value);
-            Speed = (int)Form.numSpeed.Value;
-            Vertices = new VertexArray(PrimitiveType.Points, (uint)Form.numCount.Value);
+            // Default values
+            Speed = 50;
+            Count = 1000;
+            LifeTime = 100;
+
+
+            Vertices = new VertexArray(PrimitiveType.Points, (uint)Count);
             for (var i = 0; i < Vertices.VertexCount; i++) Particles.Add(new Particle());
         }
 
         // Pool informations
-        public Vector2f Emitter { get; set; } = new Vector2f(0f, 0f);
+        public Time lifeTime;
+        public Vector2f Emitter = new Vector2f(0f, 0f);
         public List<Particle> Particles = new List<Particle>();
         public VertexArray Vertices;
-
-        // Pool properties
-        public Time LifeTime { get; set; }
-        public int Speed { get; set; }
 
         public void Update(Time elapsed)
         {
@@ -38,7 +48,7 @@ namespace Particles
                     ResetParticle(i);
 
                 // update the alpha (transparency) of the particle according to its lifetime
-                float ratio = p.LifeTime.AsSeconds() / LifeTime.AsSeconds();
+                float ratio = p.LifeTime.AsSeconds() / lifeTime.AsSeconds();
                 Vertices[(uint)i] = new Vertex(
                     Vertices[
                         (uint)i].Position + p.Velocity * elapsed.AsSeconds(),
@@ -53,7 +63,7 @@ namespace Particles
             double angle = (Randomizer.Next(0, 360)) * 3.14f / 180.0;
             double speed = Randomizer.Next(0, 50) + Speed;
             Particles[index].Velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
-            Particles[index].LifeTime = Time.FromMilliseconds((Randomizer.Next(0, LifeTime.AsMilliseconds())) + 1000);
+            Particles[index].LifeTime = Time.FromMilliseconds((Randomizer.Next(0, lifeTime.AsMilliseconds())) + 1000);
 
             // reset the position of the corresponding vertex
             Vertices[(uint)index] = new Vertex(Emitter);
