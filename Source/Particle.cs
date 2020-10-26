@@ -7,10 +7,10 @@ namespace Particles
 {
     class Particle 
     {
-        public Vector2f Velocity;
-        public Time LifeTime = Time.Zero;
-        public Vertex Vertices;
+        private Vector2f Velocity;
+        private Time LifeTime = Time.Zero;
         private readonly ParticlePool Pool;
+        internal Vertex Vertices;
 
         public Particle(ParticlePool pool)
         {
