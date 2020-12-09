@@ -30,12 +30,12 @@ namespace Particles
             // Create the windows
             RenderWindow window = new RenderWindow(Form.picParticle.Handle);
 
+            // Make the particle system emitter in center of the window
+            Particles.Emitter = new Vector2f(window.Size.X / 2, window.Size.Y / 2);
+
             // Run the main loop
             while (Working)
             {
-                // Make the particle system emitter follow the mouse
-                Particles.Emitter = new Vector2f(window.Size.X / 2, window.Size.Y / 2);
-
                 // Update it
                 Time elapsed = clock.Restart();
                 Particles.Update(elapsed);

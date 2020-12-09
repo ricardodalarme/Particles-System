@@ -26,14 +26,14 @@ namespace Particles
                 Reset();
 
             // update the alpha (transparency) of the particle according to its lifetime
-            float ratio = LifeTime.AsMilliseconds() / Pool.LifeTime;
+            double ratio = LifeTime.AsMilliseconds() / Pool.LifeTime;
             Vertices = new Vertex(
                 Vertices.Position + Velocity * elapsed.AsSeconds(),
                     new Color(Pool.R, Pool.G, Pool.B, (byte)(ratio * 255))
                 );
         }
 
-        public void Reset()
+        private void Reset()
         {
             // give a random velocity and lifetime to the particle
             double angle = (Randomizer.Next(0, 360)) * 3.14f / 180.0;

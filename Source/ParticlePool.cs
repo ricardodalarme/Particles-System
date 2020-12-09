@@ -11,12 +11,11 @@ namespace Particles
         public int Speed { get; set; }
         public int Count
         {
-            get => Particles.Capacity;
+            get => Particles.Length;
             set
             {
-                Particles.Clear();
-                Particles.Capacity = value;
-                for (var i = 0; i < Count; i++) Particles.Add(new Particle(this));
+                Particles = new Particle[value];
+                for (var i = 0; i < Count; i++) Particles[i] = new Particle(this);
             }
         }
 
@@ -46,11 +45,12 @@ namespace Particles
         // Pool informations
         internal Time lifeTime;
         internal Vector2f Emitter = new Vector2f(0f, 0f);
-        internal List<Particle> Particles = new List<Particle>();
+        internal Particle[] Particles;
 
         public void Update(Time elapsed)
         {
-            Particles.ForEach(p => p.Update(elapsed));
+            foreach (var particle in Particles)
+                particle.Update(elapsed);
         }
 
         public void Draw(RenderTarget target, RenderStates states)
