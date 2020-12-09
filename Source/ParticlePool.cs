@@ -8,28 +8,28 @@ namespace Particles
     internal class ParticlePool : Drawable
     {
         // Pool properties
-        [Category("Movement")]
-        public int StartSpeed { get; set; }
+        [Category("Movement"), Description("How fast particle move.")]
+        public int Speed { get; set; }
 
-        [Category("Movement")]
-        public int EndSpeed { get; set; }
+        [Category("Movement"), Description("How fast you want the texture to spin.")]
+        public bool RotationSpeed { get; set; }
 
-        [Category("Movement"), DefaultValue(false)]
+        [Category("Movement"),Description("Particle emitter follow the mouse.")]
         public bool FollowMouse { get; set; }
 
-        [Category("Size"), DefaultValue(1)]
+        [Category("Size"), DefaultValue(1),Description("Particle size when born.")]
         public int StartSize { get; set; }
 
-        [Category("Size"), DefaultValue(1)]
+        [Category("Size"), DefaultValue(1), Description("Particle size when die.")]
         public int EndSize { get; set; }
 
-        [Category("Color")]
+        [Category("Color"), Description("Particle color when born.")]
         public System.Drawing.Color StartColor { get; set; }
 
-        [Category("Color")]
+        [Category("Color"), Description("Particle color when die.")]
         public System.Drawing.Color EndColor { get; set; }
 
-        [Category("General")]
+        [Category("General"), Description("Maximum amount of particles in a pool.")]
         public int Count
         {
             get => _particles.Length;
@@ -40,7 +40,7 @@ namespace Particles
             }
         }
 
-        [Category("General")]
+        [Category("General"), Description("How many miliseconds an particle lives.")]
         public int LifeTime
         {
             get => _lifeTime.AsMilliseconds();
@@ -50,7 +50,7 @@ namespace Particles
         public ParticlePool()
         {
             // Default values
-            StartSpeed = EndSpeed = 50;
+            Speed = 50;
             StartSize = EndSize = 1;
             Count = 1000;
             LifeTime = 500;

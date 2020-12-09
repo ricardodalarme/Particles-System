@@ -35,7 +35,7 @@
             // 
             // picParticle
             // 
-            this.picParticle.Location = new System.Drawing.Point(215, 10);
+            this.picParticle.Location = new System.Drawing.Point(234, 10);
             this.picParticle.Name = "picParticle";
             this.picParticle.Size = new System.Drawing.Size(400, 400);
             this.picParticle.TabIndex = 2;
@@ -54,11 +54,10 @@
             this.prgProperties.HelpBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.prgProperties.HelpBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.prgProperties.HelpForeColor = System.Drawing.Color.Gainsboro;
-            this.prgProperties.HelpVisible = false;
             this.prgProperties.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(51)))), ((int)(((byte)(53)))));
-            this.prgProperties.Location = new System.Drawing.Point(12, 10);
+            this.prgProperties.Location = new System.Drawing.Point(9, 10);
             this.prgProperties.Name = "prgProperties";
-            this.prgProperties.Size = new System.Drawing.Size(193, 400);
+            this.prgProperties.Size = new System.Drawing.Size(219, 400);
             this.prgProperties.TabIndex = 115;
             this.prgProperties.ToolbarVisible = false;
             this.prgProperties.ViewBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
@@ -69,7 +68,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 419);
+            this.ClientSize = new System.Drawing.Size(643, 419);
             this.Controls.Add(this.prgProperties);
             this.Controls.Add(this.picParticle);
             this.MaximizeBox = false;
