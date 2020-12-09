@@ -29,7 +29,7 @@ namespace Particles
             double ratio = _lifeTime.AsMilliseconds() / _pool.LifeTime;
             Vertices = new Vertex(
                 Vertices.Position + _velocity * elapsed.AsSeconds(),
-                    new Color(_pool.R, _pool.G, _pool.B, (byte)(ratio * 255))
+                    new Color(_pool.StartColor.R, _pool.StartColor.G, _pool.StartColor.B, (byte)(ratio * 255))
                 );
         }
 
@@ -37,7 +37,7 @@ namespace Particles
         {
             // give a random velocity and lifetime to the particle
             double angle = (Randomizer.Next(0, 360)) * 3.14f / 180.0;
-            double speed = Randomizer.Next(0, 50) + _pool.Speed;
+            double speed = Randomizer.Next(0, 50) + _pool.StartSpeed;
             _velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
             _lifeTime = Time.FromMilliseconds((Randomizer.Next(0, _pool.LifeTime)) + 1000);
 

@@ -5,11 +5,31 @@ using static Particles.Program;
 
 namespace Particles
 {
-    class ParticlePool : Drawable
+    internal class ParticlePool : Drawable
     {
         // Pool properties
-        public int Speed { get; set; }
+        [Category("Movement")]
+        public int StartSpeed { get; set; }
+
+        [Category("Movement")]
+        public int EndSpeed { get; set; }
+
+        [Category("Movement"), DefaultValue(false)]
         public bool FollowMouse { get; set; }
+
+        [Category("Size"), DefaultValue(1)]
+        public int StartSize { get; set; }
+
+        [Category("Size"), DefaultValue(1)]
+        public int EndSize { get; set; }
+
+        [Category("Color")]
+        public System.Drawing.Color StartColor { get; set; }
+
+        [Category("Color")]
+        public System.Drawing.Color EndColor { get; set; }
+
+        [Category("General")]
         public int Count
         {
             get => _particles.Length;
@@ -20,14 +40,7 @@ namespace Particles
             }
         }
 
-        // Particle RGB color
-        [Category("Color")]
-        public byte R { get; set; }
-        [Category("Color")]
-        public byte G { get; set; }
-        [Category("Color")]
-        public byte B { get; set; }
-
+        [Category("General")]
         public int LifeTime
         {
             get => _lifeTime.AsMilliseconds();
@@ -37,10 +50,11 @@ namespace Particles
         public ParticlePool()
         {
             // Default values
-            Speed = 50;
+            StartSpeed = EndSpeed = 50;
+            StartSize = EndSize = 1;
             Count = 1000;
             LifeTime = 500;
-            R = G = B = 255;
+            StartColor = EndColor = System.Drawing.Color.White;
         }
 
         // Pool informations
