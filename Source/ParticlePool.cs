@@ -1,7 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
-using System.Collections.Generic;
 using System.ComponentModel;
+using static Particles.Program;
 
 namespace Particles
 {
@@ -9,13 +9,14 @@ namespace Particles
     {
         // Pool properties
         public int Speed { get; set; }
+        public bool FollowMouse { get; set; }
         public int Count
         {
-            get => Particles.Length;
+            get => _particles.Length;
             set
             {
-                Particles = new Particle[value];
-                for (var i = 0; i < Count; i++) Particles[i] = new Particle(this);
+                _particles = new Particle[value];
+                for (var i = 0; i < Count; i++) _particles[i] = new Particle(this);
             }
         }
 
@@ -29,8 +30,8 @@ namespace Particles
 
         public int LifeTime
         {
-            get => lifeTime.AsMilliseconds();
-            set => lifeTime = Time.FromMilliseconds(value);
+            get => _lifeTime.AsMilliseconds();
+            set => _lifeTime = Time.FromMilliseconds(value);
         }
 
         public ParticlePool()
@@ -38,25 +39,27 @@ namespace Particles
             // Default values
             Speed = 50;
             Count = 1000;
-            LifeTime = 100;
-            R = G = B=255;
+            LifeTime = 500;
+            R = G = B = 255;
         }
 
         // Pool informations
-        internal Time lifeTime;
-        internal Vector2f Emitter = new Vector2f(0f, 0f);
-        internal Particle[] Particles;
+        private Time _lifeTime;
+
+        internal Vector2f Emitter => FollowMouse ? Window.MapPixelToCoords(SFML.Window.Mouse.GetPosition(Window)) : new Vector2f(Window.Size.X / 2, Window.Size.Y / 2);
+
+        private Particle[] _particles;
 
         public void Update(Time elapsed)
         {
-            foreach (var particle in Particles)
+            foreach (var particle in _particles)
                 particle.Update(elapsed);
         }
 
         public void Draw(RenderTarget target, RenderStates states)
         {
             var array = new VertexArray(PrimitiveType.Points, (uint)Count);
-            for (int i = 0; i < Count; i++) array[(uint)i] = Particles[i].Vertices;
+            for (var i = 0; i < Count; i++) array[(uint)i] = _particles[i].Vertices;
             target.Draw(array, states);
         }
     }

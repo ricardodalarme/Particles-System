@@ -2,6 +2,7 @@
 using SFML.System;
 using System;
 using System.Windows.Forms;
+using SFML.Window;
 
 namespace Particles
 {
@@ -12,6 +13,9 @@ namespace Particles
 
         // Create the particle pool
         public static ParticlePool Particles = new ParticlePool();
+
+        // Create the windows
+        public static RenderWindow Window;
 
         // Application main form
         public static Editor Form;
@@ -27,11 +31,7 @@ namespace Particles
             Form = new Editor();
             Form.Show();
 
-            // Create the windows
-            RenderWindow window = new RenderWindow(Form.picParticle.Handle);
-
-            // Make the particle system emitter in center of the window
-            Particles.Emitter = new Vector2f(window.Size.X / 2, window.Size.Y / 2);
+            Window = new RenderWindow(Form.picParticle.Handle);
 
             // Run the main loop
             while (Working)
@@ -41,9 +41,9 @@ namespace Particles
                 Particles.Update(elapsed);
 
                 // Draw it
-                window.Clear();
-                window.Draw(Particles);
-                window.Display();
+                Window.Clear();
+                Window.Draw(Particles);
+                Window.Display();
                 Application.DoEvents();
             }
         }
