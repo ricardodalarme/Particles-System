@@ -7,7 +7,7 @@ using Color = SFML.Graphics.Color;
 
 namespace Particles
 {
-    internal class Particle: Sprite
+    internal class Particle : Sprite
     {
         private Vector2f _velocity;
         private Time _lifeTime = Time.Zero;
@@ -19,22 +19,26 @@ namespace Particles
             {
                 Color final;
                 System.Drawing.Color start = _pool.StartColor, end = _pool.EndColor;
-                final.R = Interpolation(start.R, end.R);
-                final.G = Interpolation(start.G, end.G);
-                final.B = Interpolation(start.B, end.B);
-                final.A = Interpolation(start.A, end.A);
+                final.R = (byte)Interpolation(start.R, end.R);
+                final.G = (byte)Interpolation(start.G, end.G);
+                final.B = (byte)Interpolation(start.B, end.B);
+                final.A = (byte)Interpolation(start.A, end.A);
                 return final;
             }
         }
 
+        private float CurrentSize => (float)Interpolation(_pool.StartSize, _pool.EndSize);
+
         public Particle(ParticlePool pool)
         {
             _pool = pool;
+            Texture = Textures[_pool.Texture];
+            TextureRect = new IntRect(0, 0, (int)Textures[_pool.Texture].Size.X, (int)Textures[_pool.Texture].Size.Y);
         }
 
         private double TimeStep => _lifeTime.AsMilliseconds() / (double)_pool.LifeTime;
 
-        private byte Interpolation(byte start, byte end) => (byte)(start + (end - start) * TimeStep);
+        private double Interpolation(int start, int end) => start + (end - start) * TimeStep;
 
         public void Update(Time elapsed)
         {
@@ -44,11 +48,9 @@ namespace Particles
             if (_lifeTime <= Time.Zero) Reset();
 
             // update the alpha (transparency) of the particle according to its lifetime
-            Texture = Textures[_pool.Texture];
             Position += _velocity * elapsed.AsSeconds();
             Color = CurrentColor;
-            Scale = new Vector2f((float)_pool.StartSize / Textures[_pool.Texture].Size.X, (float)_pool.StartSize / Textures[_pool.Texture].Size.Y);
-            TextureRect = new IntRect(0, 0, (int)Textures[_pool.Texture].Size.X, (int)Textures[_pool.Texture].Size.Y);
+            Scale = new Vector2f(CurrentSize / (float)Textures[_pool.Texture].Size.X, CurrentSize / (float)Textures[_pool.Texture].Size.Y);
         }
 
         private void Reset()

@@ -14,7 +14,7 @@ namespace Particles
         public static Random Randomizer = new Random();
 
         // Create the particle pool
-        public static ParticlePool Particles = new ParticlePool();
+        public static ParticlePool Particles ;
 
         // Create the windows
         public static RenderWindow Window;
@@ -31,6 +31,15 @@ namespace Particles
         {
             Clock clock = new Clock();
 
+
+            // Load all textures
+            int i = 1;
+            string directory;
+            while (  File.Exists(directory = $"{Application.StartupPath}\\Particles\\{i++}.png"))
+                Textures.Add(new Texture(directory));
+
+            Particles = new ParticlePool();
+
             // Open the main form
             Application.EnableVisualStyles();
             Form = new Editor();
@@ -38,11 +47,6 @@ namespace Particles
 
             Window = new RenderWindow(Form.picParticle.Handle);
 
-            // Load all textures
-            int i = 1;
-            string directory;
-            while (  File.Exists(directory = $"{Application.StartupPath}\\Particles\\{i++}.png"))
-                Textures.Add(new Texture(directory));
 
             // Run the main loop
             while (Working)
