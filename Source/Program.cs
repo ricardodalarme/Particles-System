@@ -1,6 +1,8 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using SFML.Window;
 
@@ -21,6 +23,9 @@ namespace Particles
         public static Editor Form;
         public static bool Working = true;
 
+        // Textures
+        public static List<Texture> Textures = new List<Texture>();
+
         [STAThread]
         static void Main()
         {
@@ -33,6 +38,12 @@ namespace Particles
 
             Window = new RenderWindow(Form.picParticle.Handle);
 
+            // Load all textures
+            int i = 1;
+            string directory;
+            while (  File.Exists(directory = $"{Application.StartupPath}\\Particles\\{i++}.png"))
+                Textures.Add(new Texture(directory));
+
             // Run the main loop
             while (Working)
             {
@@ -42,7 +53,7 @@ namespace Particles
 
                 // Draw it
                 Window.Clear();
-                Window.Draw(Particles);
+                Particles.Draw(Window);
                 Window.Display();
                 Application.DoEvents();
             }

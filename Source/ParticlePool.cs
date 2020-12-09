@@ -5,7 +5,7 @@ using static Particles.Program;
 
 namespace Particles
 {
-    internal class ParticlePool : Drawable
+    internal class ParticlePool 
     {
         // Pool properties
         [Category("Movement"), Description("How fast particle move.")]
@@ -14,10 +14,10 @@ namespace Particles
         [Category("Movement"), Description("How fast you want the texture to spin.")]
         public bool RotationSpeed { get; set; }
 
-        [Category("Movement"),Description("Particle emitter follow the mouse.")]
+        [Category("Movement"), Description("Particle emitter follow the mouse.")]
         public bool FollowMouse { get; set; }
 
-        [Category("Size"), DefaultValue(1),Description("Particle size when born.")]
+        [Category("Size"), DefaultValue(1), Description("Particle size when born.")]
         public int StartSize { get; set; }
 
         [Category("Size"), DefaultValue(1), Description("Particle size when die.")]
@@ -28,6 +28,9 @@ namespace Particles
 
         [Category("Color"), Description("Particle color when die.")]
         public System.Drawing.Color EndColor { get; set; }
+
+        [Category("General"), Description("The texture of the particles.")]
+        public int Texture { get; set; }
 
         [Category("General"), Description("Maximum amount of particles in a pool.")]
         public int Count
@@ -66,15 +69,12 @@ namespace Particles
 
         public void Update(Time elapsed)
         {
-            foreach (var particle in _particles)
-                particle.Update(elapsed);
+            foreach (var particle in _particles) particle.Update(elapsed);
         }
 
-        public void Draw(RenderTarget target, RenderStates states)
+        public void Draw(RenderWindow target)
         {
-            var array = new VertexArray(PrimitiveType.Points, (uint)Count);
-            for (var i = 0; i < Count; i++) array[(uint)i] = _particles[i].Vertices;
-            target.Draw(array, states);
+            foreach (var particle in _particles) target.Draw(particle, new RenderStates(BlendMode.Add));
         }
     }
 }
