@@ -45,7 +45,7 @@ namespace Particles
             // if the particle is dead, respawn it
             if (_lifeTime <= Time.Zero) Reset();
 
-            // update the alpha (transparency) of the particle according to its lifetime
+            // update the particle properties
             Position += _velocity * elapsed.AsSeconds();
             Color = CurrentColor;
             Scale = new Vector2f(CurrentSize / Textures[_pool.Texture].Size.X, CurrentSize / Textures[_pool.Texture].Size.Y);

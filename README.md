@@ -39,6 +39,34 @@ Essa textura pode ser qualquer coisa que quisermos que se ajuste ao nosso propó
 
 As propriedades das partículas podem ser o que você desejar. As possibilidades são infinitas. Você pode mudar o que quiser e essa flexibilidade permite gerar quase qualquer tipo de partícula que você possa imaginar. Você pode escolher o tamanho, a cor, a velocidade, a forma do emissor, a textura e muito mais.
 
+As duas principais funções do sistema são Update e Reset que estão presentes na classe _Particle.cs_. É através delas que acontece o controle da criação, movimentação e morte de cada partícula com base nos atributos selecionados para o fluxo.
+
+~~~cs
+public void Update(Time elapsed)
+{
+    _lifeTime -= elapsed;
+
+    // if the particle is dead, respawn it
+    if (_lifeTime <= Time.Zero) Reset();
+
+    // update the particle properties
+    Color = CurrentColor;
+    Scale = new Vector2f(CurrentSize / Textures[_pool.Texture].Size.X, CurrentSize / Textures[_pool.Texture].Size.Y);
+}
+
+private void Reset()
+{
+    // give a random velocity and lifetime to the particle
+    var angle = Randomizer.Next(_pool.AngleRangeMin, _pool.AngleRangeMax) * 3.14f / 180.0;
+    float speed = Randomizer.Next(_pool.SpeedMinRand, _pool.SpeedMaxRand) + _pool.Speed;
+    _velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
+    _lifeTime = Time.FromMilliseconds(Randomizer.Next(_pool.LifeTimeMinRand, _pool.LifeTimeMaxRand) + _pool.LifeTime);
+
+    // reset the position of the corresponding vertex
+    Position = _pool.Emitter;
+}
+~~~
+
 ## Atributos
 
 | Atributo        | Descrição                                         |
@@ -54,6 +82,9 @@ As propriedades das partículas podem ser o que você desejar. As possibilidades
 
 ## Exemplos
 
+![](https://im4.ezgif.com/tmp/ezgif-4-49d0f82602b6.gif)
+![](https://im4.ezgif.com/tmp/ezgif-4-162979b9d17c.gif)
+![](https://im4.ezgif.com/tmp/ezgif-4-d1d51d1a94bc.gif)
 
 ## Como Executar
 
