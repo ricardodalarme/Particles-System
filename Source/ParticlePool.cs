@@ -44,11 +44,7 @@ namespace Particles
         }
 
         [Category("General"), Description("How many miliseconds an particle lives.")]
-        public int LifeTime
-        {
-            get => _lifeTime.AsMilliseconds();
-            set => _lifeTime = Time.FromMilliseconds(value);
-        }
+        public int LifeTime { get; set; }
 
         public ParticlePool()
         {
@@ -59,9 +55,6 @@ namespace Particles
             LifeTime = 500;
             StartColor = EndColor = System.Drawing.Color.White;
         }
-
-        // Pool informations
-        private Time _lifeTime;
 
         internal Vector2f Emitter => FollowMouse ? Window.MapPixelToCoords(SFML.Window.Mouse.GetPosition(Window)) : new Vector2f(Window.Size.X / 2, Window.Size.Y / 2);
 

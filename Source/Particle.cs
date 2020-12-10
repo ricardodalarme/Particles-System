@@ -1,7 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using System;
-using System.Drawing;
 using static Particles.Program;
 using Color = SFML.Graphics.Color;
 
@@ -50,7 +49,7 @@ namespace Particles
             // update the alpha (transparency) of the particle according to its lifetime
             Position += _velocity * elapsed.AsSeconds();
             Color = CurrentColor;
-            Scale = new Vector2f(CurrentSize / (float)Textures[_pool.Texture].Size.X, CurrentSize / (float)Textures[_pool.Texture].Size.Y);
+            Scale = new Vector2f(CurrentSize / Textures[_pool.Texture].Size.X, CurrentSize / Textures[_pool.Texture].Size.Y);
         }
 
         private void Reset()
