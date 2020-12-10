@@ -35,15 +35,19 @@
             // 
             // picParticle
             // 
+            this.picParticle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.picParticle.Location = new System.Drawing.Point(234, 10);
             this.picParticle.Name = "picParticle";
-            this.picParticle.Size = new System.Drawing.Size(400, 400);
+            this.picParticle.Size = new System.Drawing.Size(464, 468);
             this.picParticle.TabIndex = 2;
             this.picParticle.TabStop = false;
             // 
             // prgProperties
             // 
-            this.prgProperties.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.prgProperties.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.prgProperties.CategoryForeColor = System.Drawing.Color.Gainsboro;
             this.prgProperties.CategorySplitterColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.prgProperties.CommandsBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -57,7 +61,7 @@
             this.prgProperties.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(51)))), ((int)(((byte)(53)))));
             this.prgProperties.Location = new System.Drawing.Point(9, 10);
             this.prgProperties.Name = "prgProperties";
-            this.prgProperties.Size = new System.Drawing.Size(219, 400);
+            this.prgProperties.Size = new System.Drawing.Size(219, 468);
             this.prgProperties.TabIndex = 115;
             this.prgProperties.ToolbarVisible = false;
             this.prgProperties.ViewBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
@@ -68,7 +72,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 419);
+            this.ClientSize = new System.Drawing.Size(707, 487);
             this.Controls.Add(this.prgProperties);
             this.Controls.Add(this.picParticle);
             this.MaximizeBox = false;

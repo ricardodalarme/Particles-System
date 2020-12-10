@@ -27,14 +27,14 @@ namespace Particles
                 final.R = (byte)Interpolation(start.R, end.R);
                 final.G = (byte)Interpolation(start.G, end.G);
                 final.B = (byte)Interpolation(start.B, end.B);
-                final.A = (byte)Interpolation(start.A, end.A);
+                final.A = (byte)Interpolation(255, 0);
                 return final;
             }
         }
 
         private float CurrentSize => (float)Interpolation(_pool.StartSize, _pool.EndSize);
 
-        private double TimeStep => _lifeTime.AsMilliseconds() / (double)_pool.LifeTime;
+        private double TimeStep => _lifeTime.AsMilliseconds() / (double)(_pool.LifeTime + _pool.LifeTimeMaxRand);
 
         private double Interpolation(int start, int end) => start + (end - start) * TimeStep;
 
@@ -55,7 +55,7 @@ namespace Particles
         {
             // give a random velocity and lifetime to the particle
             var angle = Randomizer.Next(_pool.AngleRangeMin, _pool.AngleRangeMax) * 3.14f / 180.0;
-            double speed = Randomizer.Next(_pool.SpeedMinRand, _pool.SpeedMaxRand) + _pool.Speed;
+            float speed = Randomizer.Next(_pool.SpeedMinRand, _pool.SpeedMaxRand) + _pool.Speed;
             _velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
             _lifeTime = Time.FromMilliseconds(Randomizer.Next(_pool.LifeTimeMinRand, _pool.LifeTimeMaxRand) + _pool.LifeTime);
 

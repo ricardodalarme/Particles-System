@@ -23,7 +23,7 @@ namespace Particles
             SpeedMinRand = 0;
             SpeedMaxRand = 50;
             LifeTimeMinRand = 0;
-            LifeTimeMaxRand = 1500;
+            LifeTimeMaxRand = 150;
         }
 
         // Pool properties
