@@ -22,6 +22,8 @@ namespace Particles
             AngleRangeMax = 360;
             SpeedMinRand = 0;
             SpeedMaxRand = 50;
+            LifeTimeMinRand = 0;
+            LifeTimeMaxRand = 1500;
         }
 
         // Pool properties
@@ -39,11 +41,6 @@ namespace Particles
         [DisplayName("Maximum rand")]
         [Description("Maximum value that the particle speed changes.")]
         public int SpeedMaxRand { get; set; }
-
-        [Category("Movement")]
-        [Description("Particle emitter follow the mouse.")]
-        [DisplayName("Follow Mouse")]
-        public bool FollowMouse { get; set; }
 
         [Category("Angle Range")]
         [DisplayName("Minimum")]
@@ -82,6 +79,11 @@ namespace Particles
         public int Texture { get; set; }
 
         [Category("General")]
+        [Description("Particle emitter follow the mouse.")]
+        [DisplayName("Follow Mouse")]
+        public bool FollowMouse { get; set; }
+
+        [Category("General")]
         [Description("Maximum amount of particles in a pool.")]
         public int Count
         {
@@ -93,9 +95,21 @@ namespace Particles
             }
         }
 
-        [Category("General")]
+        [Category("Life Time")]
+        [DisplayName("Value")]
         [Description("How many miliseconds an particle lives.")]
         public int LifeTime { get; set; }
+
+
+        [Category("Life Time")]
+        [DisplayName("Minimum rand")]
+        [Description("Minimum value that the particle lifetime changes.")]
+        public int LifeTimeMinRand { get; set; }
+
+        [Category("Life Time")]
+        [DisplayName("Maximum rand")]
+        [Description("Maximum value that the particle lifetime changes.")]
+        public int LifeTimeMaxRand { get; set; }
 
         internal Vector2f Emitter => FollowMouse ? Program.Window.MapPixelToCoords(Mouse.GetPosition(Program.Window)) : new Vector2f(Program.Window.Size.X / 2, Program.Window.Size.Y / 2);
 

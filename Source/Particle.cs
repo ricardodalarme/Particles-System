@@ -57,7 +57,7 @@ namespace Particles
             var angle = Randomizer.Next(_pool.AngleRangeMin, _pool.AngleRangeMax) * 3.14f / 180.0;
             double speed = Randomizer.Next(_pool.SpeedMinRand, _pool.SpeedMaxRand) + _pool.Speed;
             _velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
-            _lifeTime = Time.FromMilliseconds(Randomizer.Next(0, _pool.LifeTime) + 1000);
+            _lifeTime = Time.FromMilliseconds(Randomizer.Next(_pool.LifeTimeMinRand, _pool.LifeTimeMaxRand) + _pool.LifeTime);
 
             // reset the position of the corresponding vertex
             Position = _pool.Emitter;
