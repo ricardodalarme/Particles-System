@@ -82,10 +82,8 @@ private void Reset()
 
 ## Exemplos
 
-![](https://im4.ezgif.com/tmp/ezgif-4-d1d51d1a94bc.gif)
-
+![](https://im4.ezgif.com/tmp/ezgif-4-c13083279551.gif)
 ![](https://im4.ezgif.com/tmp/ezgif-4-49d0f82602b6.gif)
-
 ![](https://im4.ezgif.com/tmp/ezgif-4-162979b9d17c.gif)
 
 ## Como Executar
