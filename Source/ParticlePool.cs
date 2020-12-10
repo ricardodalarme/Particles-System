@@ -20,46 +20,60 @@ namespace Particles
             StartColor = EndColor = Color.White;
             AngleRangeMin = 0;
             AngleRangeMax = 360;
+            SpeedMinRand = 0;
+            SpeedMaxRand = 50;
         }
 
         // Pool properties
-        [Category("Movement")]
+        [Category("Speed")]
+        [DisplayName("Value")]
         [Description("How fast particle move.")]
         public int Speed { get; set; }
 
-        [Category("Movement")]
-        [Description("How fast you want the texture to spin.")]
-        public bool RotationSpeed { get; set; }
+        [Category("Speed")]
+        [DisplayName("Minimum rand")]
+        [Description("Minimum value that the particle speed changes.")]
+        public int SpeedMinRand { get; set; }
+
+        [Category("Speed")]
+        [DisplayName("Maximum rand")]
+        [Description("Maximum value that the particle speed changes.")]
+        public int SpeedMaxRand { get; set; }
 
         [Category("Movement")]
         [Description("Particle emitter follow the mouse.")]
+        [DisplayName("Follow Mouse")]
         public bool FollowMouse { get; set; }
 
-        [Category("Movement")]
-        [DisplayName("Minimum Angle Range")]
+        [Category("Angle Range")]
+        [DisplayName("Minimum")]
         [Description("Minimum angle range of the particle flow.")]
         public int AngleRangeMin { get; set; }
 
-        [Category("Movement")]
-        [DisplayName("Maximum Angle Range")]
+        [Category("Angle Range")]
+        [DisplayName("Maximum")]
         [Description("Maximum angle range of the particle flow.")]
         public int AngleRangeMax { get; set; }
 
         [Category("Size")]
+        [DisplayName("Start")]
         [DefaultValue(1)]
         [Description("Particle size when born.")]
         public int StartSize { get; set; }
 
         [Category("Size")]
         [DefaultValue(1)]
+        [DisplayName("End")]
         [Description("Particle size when die.")]
         public int EndSize { get; set; }
 
         [Category("Color")]
+        [DisplayName("Start")]
         [Description("Particle color when born.")]
         public Color StartColor { get; set; }
 
         [Category("Color")]
+        [DisplayName("End")]
         [Description("Particle color when die.")]
         public Color EndColor { get; set; }
 
