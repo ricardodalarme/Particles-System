@@ -54,7 +54,7 @@ namespace Particles
         private void Reset()
         {
             // give a random velocity and lifetime to the particle
-            var angle = Randomizer.Next(0, 360) * 3.14f / 180.0;
+            var angle = Randomizer.Next(_pool.AngleRangeMin, _pool.AngleRangeMax) * 3.14f / 180.0;
             double speed = Randomizer.Next(0, 50) + _pool.Speed;
             _velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
             _lifeTime = Time.FromMilliseconds(Randomizer.Next(0, _pool.LifeTime) + 1000);

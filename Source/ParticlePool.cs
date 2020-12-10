@@ -18,6 +18,8 @@ namespace Particles
             Count = 1000;
             LifeTime = 500;
             StartColor = EndColor = Color.White;
+            AngleRangeMin = 0;
+            AngleRangeMax = 360;
         }
 
         // Pool properties
@@ -32,6 +34,16 @@ namespace Particles
         [Category("Movement")]
         [Description("Particle emitter follow the mouse.")]
         public bool FollowMouse { get; set; }
+
+        [Category("Movement")]
+        [DisplayName("Minimum Angle Range")]
+        [Description("Minimum angle range of the particle flow.")]
+        public int AngleRangeMin { get; set; }
+
+        [Category("Movement")]
+        [DisplayName("Maximum Angle Range")]
+        [Description("Maximum angle range of the particle flow.")]
+        public int AngleRangeMax { get; set; }
 
         [Category("Size")]
         [DefaultValue(1)]
