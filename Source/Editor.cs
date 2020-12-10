@@ -1,4 +1,6 @@
-﻿using DarkUI.Forms;
+﻿using System;
+using System.Windows.Forms;
+using DarkUI.Forms;
 
 namespace Particles
 {
@@ -9,12 +11,12 @@ namespace Particles
             InitializeComponent();
         }
 
-        private void Editor_Load(object sender, System.EventArgs e)
+        private void Editor_Load(object sender, EventArgs e)
         {
             prgProperties.SelectedObject = Program.Particles;
         }
 
-        private void Editor_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        private void Editor_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.Working = false;
         }

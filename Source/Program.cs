@@ -1,20 +1,19 @@
-﻿using SFML.Graphics;
-using SFML.System;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using SFML.Window;
+using SFML.Graphics;
+using SFML.System;
 
 namespace Particles
 {
-    static class Program
+    internal static class Program
     {
         // To generate random numbers
         public static Random Randomizer = new Random();
 
         // Create the particle pool
-        public static ParticlePool Particles ;
+        public static ParticlePool Particles;
 
         // Create the windows
         public static RenderWindow Window;
@@ -27,16 +26,15 @@ namespace Particles
         public static List<Texture> Textures = new List<Texture>();
 
         [STAThread]
-        static void Main()
+        private static void Main()
         {
-            Clock clock = new Clock();
+            var clock = new Clock();
 
 
             // Load all textures
-            int i = 1;
+            var i = 1;
             string directory;
-            while (  File.Exists(directory = $"{Application.StartupPath}\\Particles\\{i++}.png"))
-                Textures.Add(new Texture(directory));
+            while (File.Exists(directory = $"{Application.StartupPath}\\Particles\\{i++}.png")) Textures.Add(new Texture(directory));
 
             Particles = new ParticlePool();
 
@@ -52,7 +50,7 @@ namespace Particles
             while (Working)
             {
                 // Update it
-                Time elapsed = clock.Restart();
+                var elapsed = clock.Restart();
                 Particles.Update(elapsed);
 
                 // Draw it

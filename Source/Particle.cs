@@ -1,16 +1,22 @@
-﻿using SFML.Graphics;
+﻿using System;
+using SFML.Graphics;
 using SFML.System;
-using System;
 using static Particles.Program;
-using Color = SFML.Graphics.Color;
 
 namespace Particles
 {
     internal class Particle : Sprite
     {
-        private Vector2f _velocity;
-        private Time _lifeTime = Time.Zero;
         private readonly ParticlePool _pool;
+        private Time _lifeTime = Time.Zero;
+        private Vector2f _velocity;
+
+        public Particle(ParticlePool pool)
+        {
+            _pool = pool;
+            Texture = Textures[_pool.Texture];
+            TextureRect = new IntRect(0, 0, (int)Textures[_pool.Texture].Size.X, (int)Textures[_pool.Texture].Size.Y);
+        }
 
         private Color CurrentColor
         {
@@ -27,13 +33,6 @@ namespace Particles
         }
 
         private float CurrentSize => (float)Interpolation(_pool.StartSize, _pool.EndSize);
-
-        public Particle(ParticlePool pool)
-        {
-            _pool = pool;
-            Texture = Textures[_pool.Texture];
-            TextureRect = new IntRect(0, 0, (int)Textures[_pool.Texture].Size.X, (int)Textures[_pool.Texture].Size.Y);
-        }
 
         private double TimeStep => _lifeTime.AsMilliseconds() / (double)_pool.LifeTime;
 
@@ -55,10 +54,10 @@ namespace Particles
         private void Reset()
         {
             // give a random velocity and lifetime to the particle
-            double angle = (Randomizer.Next(0, 360)) * 3.14f / 180.0;
+            var angle = Randomizer.Next(0, 360) * 3.14f / 180.0;
             double speed = Randomizer.Next(0, 50) + _pool.Speed;
             _velocity = new Vector2f((float)(Math.Cos(angle) * speed), (float)(Math.Sin(angle) * speed));
-            _lifeTime = Time.FromMilliseconds((Randomizer.Next(0, _pool.LifeTime)) + 1000);
+            _lifeTime = Time.FromMilliseconds(Randomizer.Next(0, _pool.LifeTime) + 1000);
 
             // reset the position of the corresponding vertex
             Position = _pool.Emitter;

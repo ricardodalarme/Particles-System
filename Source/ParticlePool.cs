@@ -1,38 +1,62 @@
-﻿using SFML.Graphics;
+﻿using System.ComponentModel;
+using SFML.Graphics;
 using SFML.System;
-using System.ComponentModel;
-using static Particles.Program;
+using SFML.Window;
+using Color = System.Drawing.Color;
 
 namespace Particles
 {
-    internal class ParticlePool 
+    internal class ParticlePool
     {
+        private Particle[] _particles;
+
+        public ParticlePool()
+        {
+            // Default values
+            Speed = 50;
+            StartSize = EndSize = 1;
+            Count = 1000;
+            LifeTime = 500;
+            StartColor = EndColor = Color.White;
+        }
+
         // Pool properties
-        [Category("Movement"), Description("How fast particle move.")]
+        [Category("Movement")]
+        [Description("How fast particle move.")]
         public int Speed { get; set; }
 
-        [Category("Movement"), Description("How fast you want the texture to spin.")]
+        [Category("Movement")]
+        [Description("How fast you want the texture to spin.")]
         public bool RotationSpeed { get; set; }
 
-        [Category("Movement"), Description("Particle emitter follow the mouse.")]
+        [Category("Movement")]
+        [Description("Particle emitter follow the mouse.")]
         public bool FollowMouse { get; set; }
 
-        [Category("Size"), DefaultValue(1), Description("Particle size when born.")]
+        [Category("Size")]
+        [DefaultValue(1)]
+        [Description("Particle size when born.")]
         public int StartSize { get; set; }
 
-        [Category("Size"), DefaultValue(1), Description("Particle size when die.")]
+        [Category("Size")]
+        [DefaultValue(1)]
+        [Description("Particle size when die.")]
         public int EndSize { get; set; }
 
-        [Category("Color"), Description("Particle color when born.")]
-        public System.Drawing.Color StartColor { get; set; }
+        [Category("Color")]
+        [Description("Particle color when born.")]
+        public Color StartColor { get; set; }
 
-        [Category("Color"), Description("Particle color when die.")]
-        public System.Drawing.Color EndColor { get; set; }
+        [Category("Color")]
+        [Description("Particle color when die.")]
+        public Color EndColor { get; set; }
 
-        [Category("General"), Description("The texture of the particles.")]
+        [Category("General")]
+        [Description("The texture of the particles.")]
         public int Texture { get; set; }
 
-        [Category("General"), Description("Maximum amount of particles in a pool.")]
+        [Category("General")]
+        [Description("Maximum amount of particles in a pool.")]
         public int Count
         {
             get => _particles.Length;
@@ -43,22 +67,11 @@ namespace Particles
             }
         }
 
-        [Category("General"), Description("How many miliseconds an particle lives.")]
+        [Category("General")]
+        [Description("How many miliseconds an particle lives.")]
         public int LifeTime { get; set; }
 
-        public ParticlePool()
-        {
-            // Default values
-            Speed = 50;
-            StartSize = EndSize = 1;
-            Count = 1000;
-            LifeTime = 500;
-            StartColor = EndColor = System.Drawing.Color.White;
-        }
-
-        internal Vector2f Emitter => FollowMouse ? Window.MapPixelToCoords(SFML.Window.Mouse.GetPosition(Window)) : new Vector2f(Window.Size.X / 2, Window.Size.Y / 2);
-
-        private Particle[] _particles;
+        internal Vector2f Emitter => FollowMouse ? Program.Window.MapPixelToCoords(Mouse.GetPosition(Program.Window)) : new Vector2f(Program.Window.Size.X / 2, Program.Window.Size.Y / 2);
 
         public void Update(Time elapsed)
         {
